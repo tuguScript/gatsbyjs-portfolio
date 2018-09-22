@@ -42,7 +42,10 @@ const FooterUnstyled = ({ classes }) => {
           built with:
         </Typography>
         {items.map((item, i) => (
-          <img key={i} src={item.comp} className={classes.svg} />
+          <a href={item.url}>
+
+            <img key={i} src={item.comp} className={classes.svg} />
+          </a>
         ))}
       </div>
     </footer>
