@@ -12,15 +12,23 @@ import Item from '../components/Item'
 import worksData from '../utils/worksData'
 
 class IndexPage extends Component {
+  constructor() {
+    super()
+    this.state = {
+      worksData: [],
+    }
+  }
   componentDidMount = () => {
     loadCSS(
       'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
       document.querySelector('#insertion-point-jss')
     )
     console.log(worksData)
+    this.setState({ worksData })
   }
 
   render() {
+    let { worksData } = this.state
     return (
       <Layout>
         <section>
@@ -47,7 +55,9 @@ class IndexPage extends Component {
             WORKS
           </Typography>
           <div>
-            <Item />
+            {worksData.map((data, i) => {
+              return <Item key={i} data={data} />
+            })}
           </div>
         </section>
         <section>
@@ -81,18 +91,6 @@ class IndexPage extends Component {
             />
           </div>
         </section>
-
-        {/* <h1> Hi people </h1> <p> Welcome to your new Gatsby site. </p>
-        <p> Now go build something great. </p>
-        <Typography variant="display4" gutterBottom>
-          Display 4
-        </Typography>
-        <AccessAlarm />
-        <Button variant="contained" color="primary">
-          Hello World
-        </Button>
-        <Icon className="fa fa-plus-circle" />
-        <Link to="/page-2/"> Go to page 2 </Link> */}
       </Layout>
     )
   }
