@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField'
 
 import Layout from '../components/layout'
 import Item from '../components/Item'
+import worksData from '../utils/worksData'
 
 class IndexPage extends Component {
   componentDidMount = () => {
@@ -16,6 +17,7 @@ class IndexPage extends Component {
       'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
       document.querySelector('#insertion-point-jss')
     )
+    console.log(worksData)
   }
 
   render() {
