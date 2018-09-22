@@ -9,8 +9,18 @@ import MaterialUiIcon from '../images/svg/material-ui.svg'
 import WebpackIcon from '../images/svg/webpack.svg'
 import BabelIcon from '../images/svg/babel.svg'
 import NetlifyIcon from '../images/svg/netlify.svg'
+import injectSheet from 'react-jss'
+import Typography from '@material-ui/core/Typography'
 
-const Footer = () => {
+const styles = {
+  svg: {
+    width: '22px',
+    height: '22px',
+  },
+  footer: {},
+}
+
+const FooterUnstyled = ({ classes }) => {
   const items = [
     { name: 'gatsby', url: 'https://www.gatsbyjs.org/', comp: GatsbyIcon },
     { name: 'react', url: 'https://reactjs.org/', comp: ReactIcon },
@@ -26,18 +36,19 @@ const Footer = () => {
     { name: 'netlify', url: 'https://www.netlify.com/', comp: NetlifyIcon },
   ]
   return (
-    <footer
-      style={{
-        marginBottom: '1.45rem',
-      }}
-    >
+    <footer className={classes.footer}>
       <div>
-        {items.map(item => (
-          <img src={item.comp} alt="" srcset="" />
+        <Typography variant="subheading" gutterBottom>
+          built with:
+        </Typography>
+        {items.map((item, i) => (
+          <img key={i} src={item.comp} className={classes.svg} />
         ))}
       </div>
     </footer>
   )
 }
+
+const Footer = injectSheet(styles)(FooterUnstyled)
 
 export default Footer
