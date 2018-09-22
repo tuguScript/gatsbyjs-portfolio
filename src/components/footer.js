@@ -35,9 +35,6 @@ const Footer = () => {
         {items.map(item => (
           <img src={item.comp} alt="" srcset="" />
         ))}
-        <Icon className="fab fa-github" />
-        <Icon className="fab fa-linkedin-in" />
-        <Icon className="fab fa-twitter" />
       </div>
     </footer>
   )
