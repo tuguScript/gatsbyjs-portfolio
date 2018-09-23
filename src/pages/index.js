@@ -97,7 +97,7 @@ class IndexPage extends Component {
             Contact{' '}
           </Typography>{' '}
           <div>
-            <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field">
+            <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
               <TextField
                 required
                 id="outlined-email-input"
