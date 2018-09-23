@@ -25,33 +25,23 @@ const styles = {
 
 export default class Item extends Component {
   render() {
+    let { data } = this.props
     return (
       <Card
       // className={classes.card}
       >
         <CardContent>
-          <Typography
-            //  className={classes.title}
-            color="textSecondary"
-          >
-            Word of the Day{' '}
-          </Typography>{' '}
           <Typography variant="headline" component="h2">
-            be lent{' '}
-          </Typography>{' '}
-          <Typography
-            // className={classes.pos}
-            color="textSecondary"
-          >
-            adjective{' '}
-          </Typography>{' '}
-          <Typography component="p">
-            well meaning and kindly. <br /> {'"a benevolent smile"'}{' '}
-          </Typography>{' '}
-        </CardContent>{' '}
+            {data.title}
+          </Typography>
+          <Typography variant="subhead" component="p">
+            {data.description}
+          </Typography>
+        </CardContent>
         <CardActions>
-          <Button size="small"> Learn More </Button>{' '}
-        </CardActions>{' '}
+          <Button size="small" href={data.link}> APP </Button>
+          {data.github ? <Button href={data.github} size="small"> CODE </Button> : null}
+        </CardActions>
       </Card>
     )
   }
