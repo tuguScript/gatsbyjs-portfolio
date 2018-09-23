@@ -97,7 +97,7 @@ class IndexPage extends Component {
             Contact{' '}
           </Typography>{' '}
           <div>
-            <form name="contact" method="POST" netlify>
+            <form name="contact" method="POST" netlify netlify-honeypot="bot-field">
               <TextField
                 required
                 id="outlined-email-input"
@@ -115,6 +115,7 @@ class IndexPage extends Component {
                 style={{
                   // margin: 8,
                 }}
+                name="message"
                 placeholder="Message"
                 fullWidth
                 margin="normal"
