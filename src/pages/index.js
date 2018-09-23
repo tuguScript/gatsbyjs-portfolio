@@ -6,6 +6,7 @@ import { AccessAlarm } from '@material-ui/icons'
 import Icon from '@material-ui/core/Icon'
 import { loadCSS } from 'fg-loadcss/src/loadCSS'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 import Layout from '../components/layout'
 import Item from '../components/Item'
@@ -96,32 +97,34 @@ class IndexPage extends Component {
             Contact{' '}
           </Typography>{' '}
           <div>
-            <TextField
-              required
-              id="outlined-email-input"
-              label="Email"
-              type="email"
-              name="email"
-              autoComplete="email"
-              margin="normal"
-              variant="outlined"
-            />
-            <TextField
-              required
-              id="outlined-full-width"
-              label="Label"
-              style={{
-                margin: 8,
-              }}
-              placeholder="Placeholder"
-              helperText="Full width!"
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />{' '}
+            <form name="contact" method="POST" netlify>
+              <TextField
+                required
+                id="outlined-email-input"
+                label="Email"
+                type="email"
+                name="email"
+                autoComplete="email"
+                margin="normal"
+                variant="outlined"
+              />
+              <TextField
+                required
+                id="outlined-full-width"
+                label="Message"
+                style={{
+                  // margin: 8,
+                }}
+                placeholder="Message"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <Button color="primary" type="submit">Send</Button>
+            </form>
           </div>{' '}
         </section>{' '}
       </Layout>
