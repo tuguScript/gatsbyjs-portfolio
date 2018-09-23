@@ -34,7 +34,7 @@ export default class Item extends Component {
           <Typography variant="headline" component="h2">
             {data.title}
           </Typography>
-          <Typography variant="subhead" component="p">
+          <Typography variant="subheading" >
             {data.description}
           </Typography>
         </CardContent>
