@@ -4,12 +4,23 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Icon from '@material-ui/core/Icon'
+import injectSheet from 'react-jss'
 
 // import Header from './header'
 import Footer from './footer'
 import './layout.css'
 
-class Layout extends Component {
+const styles = {
+  header: {
+    display: 'flex',
+    margin: '0 auto',
+    justifyContent: 'space-between',
+    maxWidth: '1200px',
+    height: '60px'
+  },
+}
+
+class LayoutUnstyled extends Component {
   constructor() {
     super()
     this.state = {
@@ -41,6 +52,7 @@ class Layout extends Component {
       },
     })
     let { lightTheme } = this.state
+    let { classes } = this.props
     return (
       <StaticQuery
         query={graphql`
@@ -70,11 +82,7 @@ class Layout extends Component {
               <html lang="en" />
             </Helmet>{' '}
             <MuiThemeProvider theme={theme}>
-              <header
-                style={{
-                  marginBottom: '1.45rem',
-                }}
-              >
+              <header className={classes.header}>
                 <div>
                   <Icon
                     className="fab fa-github-alt"
@@ -111,6 +119,8 @@ class Layout extends Component {
                     }}
                     color="action"
                   />
+                </div>
+                <div>
                   {this.state.lightTheme ? (
                     <Icon
                       className="fas fa-sun"
@@ -126,8 +136,6 @@ class Layout extends Component {
                       color="action"
                     />
                   )}
-
-                  {/* <i class="fas fa-envelope"></i> */}
                 </div>
               </header>
               <div>{this.props.children}</div>
@@ -140,8 +148,10 @@ class Layout extends Component {
   }
 }
 
-Layout.propTypes = {
+LayoutUnstyled.propTypes = {
   children: PropTypes.node.isRequired,
 }
+
+const Layout = injectSheet(styles)(LayoutUnstyled)
 
 export default Layout
