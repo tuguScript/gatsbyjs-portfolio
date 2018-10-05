@@ -11,8 +11,30 @@ import Button from '@material-ui/core/Button'
 import Layout from '../components/layout'
 import Item from '../components/Item'
 import worksData from '../utils/worksData'
+import injectSheet from 'react-jss'
+import './index.css'
 
-class IndexPage extends Component {
+const styles = {
+  container: {
+    margin: '0 auto',
+    maxWidth: '1200px',
+  },
+  works: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  svg: {
+    flex: 1,
+  },
+  page1: {
+    display: 'flex',
+    margin: '0 auto',
+    maxWidth: '1200px',
+    height: 563,
+  },
+}
+
+class IndexPageUnstyled extends Component {
   constructor() {
     super()
     this.state = {
@@ -32,10 +54,11 @@ class IndexPage extends Component {
 
   render() {
     let { worksData } = this.state
+    let { classes } = this.props
     return (
       <Layout>
-        <section>
-          <div>
+        <section className={classes.page1}>
+          <div style={{ flex: 1 }}>
             <Typography variant="headline" gutterBottom>
               Hi, I’ m Tugi{' '}
             </Typography>{' '}
@@ -79,25 +102,60 @@ class IndexPage extends Component {
               />{' '}
             </Typography>{' '}
           </div>{' '}
-          <div> svg </div>{' '}
+          <div className={classes.svg}>
+            <div className="video-wrapper">
+              <video
+                className="video"
+                src="https://res.cloudinary.com/narative/video/upload/v1524716897/narative-wave.webm"
+                autoplay="true"
+                muted
+                loop
+                width="100%" height="563"
+                style={{position: 'relative',
+                  overflow: 'hidden',
+                  clipPath: 'url(#mask)'}}
+              />
+              <svg className="svg-overlay" style={{position: 'relative',
+    zIndex: 10,
+    width: '100%',}}>
+                <clipPath id="mask">
+                  <text
+                    y="50vh"
+                    style={{
+                      fontSize: '50vw',
+                      fontFamily: 'Roboto',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    T
+                  </text>
+                </clipPath>
+              </svg>
+            </div>
+          </div>{' '}
         </section>{' '}
-        <section>
+        <section className={classes.container}>
           <Typography variant="headline" gutterBottom>
             WORKS{' '}
           </Typography>{' '}
-          <div>
+          <div className={classes.works}>
             {' '}
             {worksData.map((data, i) => {
               return <Item key={i} data={data} />
             })}{' '}
           </div>{' '}
         </section>{' '}
-        <section>
+        <section className={classes.container}>
           <Typography variant="headline" gutterBottom>
             Contact{' '}
           </Typography>{' '}
           <div>
-            <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+            >
               <TextField
                 required
                 id="outlined-email-input"
@@ -112,9 +170,11 @@ class IndexPage extends Component {
                 required
                 id="outlined-full-width"
                 label="Message"
-                style={{
-                  // margin: 8,
-                }}
+                style={
+                  {
+                    // margin: 8,
+                  }
+                }
                 name="message"
                 placeholder="Message"
                 fullWidth
@@ -124,7 +184,9 @@ class IndexPage extends Component {
                   shrink: true,
                 }}
               />
-              <Button color="primary" type="submit">Send</Button>
+              <Button color="primary" type="submit">
+                Send
+              </Button>
             </form>
           </div>{' '}
         </section>{' '}
@@ -132,5 +194,7 @@ class IndexPage extends Component {
     )
   }
 }
+
+const IndexPage = injectSheet(styles)(IndexPageUnstyled)
 
 export default IndexPage

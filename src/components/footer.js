@@ -15,9 +15,12 @@ import Typography from '@material-ui/core/Typography'
 const styles = {
   svg: {
     width: '22px',
-    height: '22px',
+    // height: '22px',
   },
-  footer: {},
+  footer: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }
 
 const FooterUnstyled = ({ classes }) => {
@@ -37,16 +40,23 @@ const FooterUnstyled = ({ classes }) => {
   ]
   return (
     <footer className={classes.footer}>
-      <div>
+      <div style={{ display: 'flex', width: 400 }}>
         <Typography variant="subheading" gutterBottom>
           built with:
         </Typography>
-        {items.map((item, i) => (
-          <a href={item.url}>
-
-            <img key={i} src={item.comp} className={classes.svg} />
-          </a>
-        ))}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            flex: 'auto',
+          }}
+        >
+          {items.map((item, i) => (
+            <a href={item.url}>
+              <img key={i} src={item.comp} className={classes.svg} />
+            </a>
+          ))}
+        </div>
       </div>
     </footer>
   )

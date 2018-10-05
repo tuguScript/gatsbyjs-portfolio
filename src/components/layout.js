@@ -83,7 +83,7 @@ class LayoutUnstyled extends Component {
             </Helmet>{' '}
             <MuiThemeProvider theme={theme}>
               <header className={classes.header}>
-                <div>
+                <div style={{margin: 'auto 0', display: 'flex', justifyContent: 'space-between', width: 152}}>
                   <Icon
                     className="fab fa-github-alt"
                     style={{ cursor: 'pointer' }}
@@ -120,7 +120,7 @@ class LayoutUnstyled extends Component {
                     color="action"
                   />
                 </div>
-                <div>
+                <div style={{margin: 'auto 0'}}>
                   {this.state.lightTheme ? (
                     <Icon
                       className="fas fa-sun"

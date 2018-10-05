@@ -4,31 +4,21 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import injectSheet from 'react-jss'
 
 const styles = {
   card: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    marginBottom: 16,
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
+    width: 370,
+  }
 }
 
-export default class Item extends Component {
+class ItemUnstyled extends Component {
   render() {
     let { data } = this.props
+    let { classes } = this.props
     return (
       <Card
-      // className={classes.card}
+      className={classes.card}
       >
         <CardContent>
           <Typography variant="headline" component="h2">
@@ -46,3 +36,6 @@ export default class Item extends Component {
     )
   }
 }
+
+const Item = injectSheet(styles)(ItemUnstyled)
+export default Item
