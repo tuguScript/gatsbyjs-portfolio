@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'gatsby'
 import 'typeface-roboto'
 import Typography from '@material-ui/core/Typography'
-import { AccessAlarm } from '@material-ui/icons'
+import SendIcon from '@material-ui/icons/Send'
 import Icon from '@material-ui/core/Icon'
 import { loadCSS } from 'fg-loadcss/src/loadCSS'
 import TextField from '@material-ui/core/TextField'
@@ -14,7 +13,9 @@ import worksData from '../utils/worksData'
 import injectSheet from 'react-jss'
 import './index.css'
 
-const styles = {
+// TODO: on scrollUP, show header
+
+const styles = theme => ({
   container: {
     margin: '0 auto',
     maxWidth: '1200px',
@@ -22,17 +23,24 @@ const styles = {
   works: {
     display: 'flex',
     justifyContent: 'space-between',
+    margin: '100px 0px',
   },
   svg: {
     flex: 1,
+    maxWidth: '32vw',
   },
   page1: {
     display: 'flex',
     margin: '0 auto',
     maxWidth: '1200px',
-    height: 563,
+    height: '90vh',
+    padding: '15vh 0vh',
+    justifyContent: 'space-between',
   },
-}
+  rightIcon: {
+    marginLeft: '15px',
+  },
+})
 
 class IndexPageUnstyled extends Component {
   constructor() {
@@ -46,7 +54,6 @@ class IndexPageUnstyled extends Component {
       'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
       document.querySelector('#insertion-point-jss')
     )
-    console.log(worksData)
     this.setState({
       worksData,
     })
@@ -58,18 +65,25 @@ class IndexPageUnstyled extends Component {
     return (
       <Layout>
         <section className={classes.page1}>
-          <div style={{ flex: 1 }}>
-            <Typography variant="headline" gutterBottom>
+          <div style={{ flex: 1, maxWidth: '32vw' }}>
+            <Typography
+              variant="headline"
+              gutterBottom
+              style={{ marginBottom: '52px' }}
+            >
               Hi, I’ m Tugi{' '}
             </Typography>{' '}
             <Typography variant="subheading" gutterBottom>
               I’ m a full - stack designer / developer based in San Francisco
-              Bay Area.My skills and experience include UI + UX design, front -
+              Bay Area. <br />
+              <br /> My skills and experience include UI + UX design, front -
               end development, back - end development, and involvement in
               product launches.My strong programming fundamentals and passion
-              for tech allow me to quickly pick up new frameworks and
-              languages.Feel free to download my resume.Get in touch, or find me
-              elsewhere:
+              for tech allow me to quickly pick up new frameworks and languages.
+              <br />
+              <br /> Feel free to download my resume.
+              <br />
+              <br /> Get in touch, or find me elsewhere:
               <Icon
                 className="fab fa-github-alt"
                 style={{
@@ -107,30 +121,17 @@ class IndexPageUnstyled extends Component {
               <video
                 className="video"
                 src="https://res.cloudinary.com/narative/video/upload/v1524716897/narative-wave.webm"
-                autoplay="true"
+                autoPlay={true}
                 muted
                 loop
-                width="100%" height="563"
-                style={{position: 'relative',
+                width="100%"
+                height="563"
+                style={{
+                  position: 'relative',
                   overflow: 'hidden',
-                  clipPath: 'url(#mask)'}}
+                  clipPath: 'url(#mask)',
+                }}
               />
-              <svg className="svg-overlay" style={{position: 'relative',
-    zIndex: 10,
-    width: '100%',}}>
-                <clipPath id="mask">
-                  <text
-                    y="50vh"
-                    style={{
-                      fontSize: '50vw',
-                      fontFamily: 'Roboto',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    T
-                  </text>
-                </clipPath>
-              </svg>
             </div>
           </div>{' '}
         </section>{' '}
@@ -146,7 +147,11 @@ class IndexPageUnstyled extends Component {
           </div>{' '}
         </section>{' '}
         <section className={classes.container}>
-          <Typography variant="headline" gutterBottom>
+          <Typography
+            variant="headline"
+            gutterBottom
+            style={{ marginBottom: '100px' }}
+          >
             Contact{' '}
           </Typography>{' '}
           <div>
@@ -164,7 +169,8 @@ class IndexPageUnstyled extends Component {
                 name="email"
                 autoComplete="email"
                 margin="normal"
-                variant="outlined"
+                variant="filled"
+                fullWidth
               />
               <TextField
                 required
@@ -175,17 +181,24 @@ class IndexPageUnstyled extends Component {
                     // margin: 8,
                   }
                 }
+                multiline
+                rows="6"
                 name="message"
-                placeholder="Message"
                 fullWidth
                 margin="normal"
-                variant="outlined"
+                variant="filled"
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
-              <Button color="primary" type="submit">
+              <Button
+                color="primary"
+                type="submit"
+                variant="contained"
+                style={{ marginTop: '16px' }}
+              >
                 Send
+                <SendIcon className={classes.rightIcon} />
               </Button>
             </form>
           </div>{' '}

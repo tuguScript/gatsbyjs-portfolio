@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import Icon from '@material-ui/core/Icon'
 import GatsbyIcon from '../images/svg/gatsby.svg'
 import ReactIcon from '../images/svg/react.svg'
 import GraphqlIcon from '../images/svg/graphql.svg'
@@ -9,23 +7,47 @@ import MaterialUiIcon from '../images/svg/material-ui.svg'
 import WebpackIcon from '../images/svg/webpack.svg'
 import BabelIcon from '../images/svg/babel.svg'
 import NetlifyIcon from '../images/svg/netlify.svg'
-import injectSheet from 'react-jss'
 import Typography from '@material-ui/core/Typography'
 
-const Footer = ({  }) => {
+const Footer = () => {
   const items = [
-    { name: 'gatsby', url: 'https://www.gatsbyjs.org/', comp: GatsbyIcon },
-    { name: 'react', url: 'https://reactjs.org/', comp: ReactIcon },
-    { name: 'graphql', url: 'http://graphql.org/', comp: GraphqlIcon },
-    { name: 'jss', url: 'http://cssinjs.org/', comp: JssIcon },
+    {
+      name: 'gatsby',
+      url: 'https://www.gatsbyjs.org/',
+      comp: GatsbyIcon,
+      alt: 'icon',
+    },
+    {
+      name: 'react',
+      url: 'https://reactjs.org/',
+      comp: ReactIcon,
+      alt: 'icon',
+    },
+    {
+      name: 'graphql',
+      url: 'http://graphql.org/',
+      comp: GraphqlIcon,
+      alt: 'icon',
+    },
+    { name: 'jss', url: 'http://cssinjs.org/', comp: JssIcon, alt: 'icon' },
     {
       name: 'material-ui',
       url: 'https://material-ui-next.com/',
       comp: MaterialUiIcon,
     },
-    { name: 'webpack', url: 'https://webpack.js.org/', comp: WebpackIcon },
-    { name: 'babel', url: 'https://babeljs.io/', comp: BabelIcon },
-    { name: 'netlify', url: 'https://www.netlify.com/', comp: NetlifyIcon },
+    {
+      name: 'webpack',
+      url: 'https://webpack.js.org/',
+      comp: WebpackIcon,
+      alt: 'icon',
+    },
+    { name: 'babel', url: 'https://babeljs.io/', comp: BabelIcon, alt: 'icon' },
+    {
+      name: 'netlify',
+      url: 'https://www.netlify.com/',
+      comp: NetlifyIcon,
+      alt: 'icon',
+    },
   ]
   return (
     <footer
@@ -46,8 +68,13 @@ const Footer = ({  }) => {
           }}
         >
           {items.map((item, i) => (
-            <a href={item.url}>
-              <img key={i} src={item.comp} style={{ width: 22 }} />
+            <a href={item.url} key={i}>
+              <img
+                key={i}
+                src={item.comp}
+                style={{ width: 22 }}
+                alt={item.alt}
+              />
             </a>
           ))}
         </div>
