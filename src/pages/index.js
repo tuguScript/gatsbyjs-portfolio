@@ -14,6 +14,10 @@ import injectSheet from 'react-jss'
 import './index.css'
 
 // TODO: on scrollUP, show header
+// revealjs. everything
+// moon sun icon change Animation
+// email send
+// mobile responsive design
 
 const styles = theme => ({
   container: {
