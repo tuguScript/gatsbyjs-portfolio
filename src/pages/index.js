@@ -265,7 +265,6 @@ class IndexPageUnstyled extends Component {
                 }
                 multiline
                 rows="6"
-                name="message"
                 fullWidth
                 margin="normal"
                 variant="filled"
