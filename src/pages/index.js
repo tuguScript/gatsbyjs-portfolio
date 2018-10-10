@@ -169,7 +169,6 @@ class IndexPageUnstyled extends Component {
             WORKS
           </Typography>
           <div className={classes.works}>
-            
             {worksData.map((data, i) => {
               return <Item key={i} data={data} />
             })}
@@ -188,7 +187,7 @@ class IndexPageUnstyled extends Component {
               <input type="hidden" name="form-name" value="contact" />
               <p>
                 <label>
-                  Your Name:
+                  Your Name:{' '}
                   <input
                     type="text"
                     name="name"
@@ -199,7 +198,7 @@ class IndexPageUnstyled extends Component {
               </p>
               <p>
                 <label>
-                  Your Email:
+                  Your Email:{' '}
                   <input
                     type="email"
                     name="email"
@@ -210,7 +209,7 @@ class IndexPageUnstyled extends Component {
               </p>
               <p>
                 <label>
-                  Message:
+                  Message:{' '}
                   <textarea
                     name="message"
                     value={message}
