@@ -100,8 +100,8 @@ class IndexPageUnstyled extends Component {
               gutterBottom
               style={{ marginBottom: '52px' }}
             >
-              Hi, I’ m Tugi{' '}
-            </Typography>{' '}
+              Hi, I’ m Tugi
+            </Typography>
             <Typography variant="subheading" gutterBottom>
               I’ m a full - stack designer / developer based in San Francisco
               Bay Area. <br />
@@ -121,7 +121,7 @@ class IndexPageUnstyled extends Component {
                 onClick={() => {
                   window.open('https://github.com/tuguScript/', '_blank')
                 }}
-              />{' '}
+              />
               <Icon
                 className="fab fa-linkedin-in"
                 style={{
@@ -133,7 +133,7 @@ class IndexPageUnstyled extends Component {
                     '_blank'
                   )
                 }}
-              />{' '}
+              />
               <Icon
                 className="fab fa-twitter"
                 style={{
@@ -142,9 +142,9 @@ class IndexPageUnstyled extends Component {
                 onClick={() => {
                   window.open('https://twitter.com/tuguldur_01', '_blank')
                 }}
-              />{' '}
-            </Typography>{' '}
-          </div>{' '}
+              />
+            </Typography>
+          </div>
           <div className={classes.svg}>
             <div className="video-wrapper">
               <video
@@ -162,33 +162,33 @@ class IndexPageUnstyled extends Component {
                 }}
               />
             </div>
-          </div>{' '}
-        </section>{' '}
+          </div>
+        </section>
         <section className={classes.container}>
           <Typography variant="headline" gutterBottom>
-            WORKS{' '}
-          </Typography>{' '}
+            WORKS
+          </Typography>
           <div className={classes.works}>
-            {' '}
+            
             {worksData.map((data, i) => {
               return <Item key={i} data={data} />
-            })}{' '}
-          </div>{' '}
-        </section>{' '}
+            })}
+          </div>
+        </section>
         <section className={classes.container}>
           <Typography
             variant="headline"
             gutterBottom
             style={{ marginBottom: '100px' }}
           >
-            Contact{' '}
-          </Typography>{' '}
+            Contact
+          </Typography>
           <div>
             <form onSubmit={this.handleSubmit} netlify="true">
               <input type="hidden" name="form-name" value="contact" />
               <p>
                 <label>
-                  Your Name:{' '}
+                  Your Name:
                   <input
                     type="text"
                     name="name"
@@ -199,7 +199,7 @@ class IndexPageUnstyled extends Component {
               </p>
               <p>
                 <label>
-                  Your Email:{' '}
+                  Your Email:
                   <input
                     type="email"
                     name="email"
@@ -210,7 +210,7 @@ class IndexPageUnstyled extends Component {
               </p>
               <p>
                 <label>
-                  Message:{' '}
+                  Message:
                   <textarea
                     name="message"
                     value={message}
@@ -282,8 +282,8 @@ class IndexPageUnstyled extends Component {
                 <SendIcon className={classes.rightIcon} />
               </Button>
             </form>
-          </div>{' '}
-        </section>{' '}
+          </div>
+        </section>
       </Layout>
     )
   }
