@@ -6,7 +6,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-jss',
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-127304111-1',
         // Puts tracking script in the head instead of the body
@@ -18,15 +18,15 @@ module.exports = {
         // Avoids sending pageview hits from custom paths
         exclude: ['/preview/**', '/do-not-track/me/too/'],
         // Enables Google Optimize using your container Id
-        optimizeId: 'YOUR_GOOGLE_OPTIMIZE_TRACKING_ID',
+        // optimizeId: 'YOUR_GOOGLE_OPTIMIZE_TRACKING_ID',
         // Any additional create only fields (optional)
-        sampleRate: 5,
-        siteSpeedSampleRate: 10,
-        cookieDomain: 'tugi.me',
+        // sampleRate: 5,
+        // siteSpeedSampleRate: 10,
+        // cookieDomain: 'tugi.me',
       },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Tugi',
         short_name: 'tuguldur bayarnyam',
