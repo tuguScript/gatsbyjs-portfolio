@@ -223,7 +223,7 @@ class IndexPageUnstyled extends Component {
               </p>
             </form>
 
-            <form onSubmit={this.handleSubmit} netlify="true">
+            {/* <form onSubmit={this.handleSubmit} netlify="true">
               <input type="hidden" name="form-name" value="contact" />
               <TextField
                 required
@@ -282,6 +282,7 @@ class IndexPageUnstyled extends Component {
                 <SendIcon className={classes.rightIcon} />
               </Button>
             </form>
+           */}
           </div>
         </section>
       </Layout>
