@@ -47,11 +47,20 @@ const styles = theme => ({
   },
 })
 
+const encode = data => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+}
+
 class IndexPageUnstyled extends Component {
   constructor() {
     super()
     this.state = {
       worksData: [],
+      name: '',
+      email: '',
+      message: '',
     }
   }
   componentDidMount = () => {
@@ -64,9 +73,24 @@ class IndexPageUnstyled extends Component {
     })
   }
 
+  handleSubmit = e => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'contact', ...this.state }),
+    })
+      .then(() => alert('Success!'))
+      .catch(error => alert(error))
+
+    e.preventDefault()
+  }
+
+  handleChange = e => this.setState({ [e.target.name]: e.target.value })
+
   render() {
     let { worksData } = this.state
     let { classes } = this.props
+    const { name, email, message } = this.state;
     return (
       <Layout>
         <section className={classes.page1}>
@@ -160,8 +184,57 @@ class IndexPageUnstyled extends Component {
             Contact{' '}
           </Typography>{' '}
           <div>
+          <form onSubmit={this.handleSubmit}>
+          <p>
+            <label>
+              Your Name: <input type="text" name="name" value={name} onChange={this.handleChange} />
+            </label>
+          </p>
+          <p>
+            <label>
+              Your Email: <input type="email" name="email" value={email} onChange={this.handleChange} />
+            </label>
+          </p>
+          <p>
+            <label>
+              Message: <textarea name="message" value={message} onChange={this.handleChange} />
+            </label>
+          </p>
+          <p>
+            <button type="submit">Send</button>
+          </p>
+        </form>
+            <form name="contact2" method="POST" netlify>
+              <p>
+                <label>
+                  Your Name: <input type="text" name="name" />
+                </label>
+              </p>
+              <p>
+                <label>
+                  Your Email: <input type="email" name="email" />
+                </label>
+              </p>
+              <p>
+                <label>
+                  Your Role:{' '}
+                  <select name="role[]" multiple>
+                    <option value="leader">Leader</option>
+                    <option value="follower">Follower</option>
+                  </select>
+                </label>
+              </p>
+              <p>
+                <label>
+                  Message: <textarea name="message" />
+                </label>
+              </p>
+              <p>
+                <button type="submit">Send</button>
+              </p>
+            </form>
             <form
-              name="contact"
+              name="contact1"
               method="post"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
