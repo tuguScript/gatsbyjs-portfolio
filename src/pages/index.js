@@ -224,7 +224,7 @@ class IndexPageUnstyled extends Component {
             </form>
 
             <form onSubmit={this.handleSubmit} netlify="true">
-              <input type="hidden" name="bot-field" />
+              <input type="hidden" name="form-name" value="contact" />
               <TextField
                 required
                 id="outlined-text-input"
