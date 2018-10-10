@@ -14,11 +14,11 @@ import injectSheet from 'react-jss'
 import './index.css'
 
 // TODO: on scrollUP, show header
-//google analytics
-// revealjs. everything
-// moon sun icon change Animation
-// email send
-// mobile responsive design
+// TODO:mobile responsive design
+// google analytics
+// TODO:revealjs. everything
+// TODO:moon sun icon change Animation
+// TODO:email send
 
 const styles = theme => ({
   container: {
@@ -162,7 +162,7 @@ class IndexPageUnstyled extends Component {
           <div>
             <form
               name="contact"
-              method="POST"
+              method="post"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
             >
