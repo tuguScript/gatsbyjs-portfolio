@@ -14,6 +14,7 @@ import injectSheet from 'react-jss'
 import './index.css'
 
 // TODO: on scrollUP, show header
+//google analytics
 // revealjs. everything
 // moon sun icon change Animation
 // email send
