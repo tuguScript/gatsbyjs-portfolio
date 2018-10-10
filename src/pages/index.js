@@ -161,6 +161,7 @@ class IndexPageUnstyled extends Component {
           </Typography>{' '}
           <div>
             <form method="post" action="#">
+              <input type="hidden" name="bot-field" />
               <div className="field half first">
                 <label htmlFor="name">Name</label>
                 <input type="text" name="name" id="name" />
@@ -193,6 +194,7 @@ class IndexPageUnstyled extends Component {
               data-netlify="true"
               data-netlify-honeypot="bot-field"
             >
+              <input type="hidden" name="bot-field" />
               <TextField
                 required
                 id="outlined-email-input"
