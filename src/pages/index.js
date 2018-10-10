@@ -184,7 +184,8 @@ class IndexPageUnstyled extends Component {
             Contact{' '}
           </Typography>{' '}
           <div>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} netlify="true">
+          <input type="hidden" name="form-name" value="contact" /> 
           <p>
             <label>
               Your Name: <input type="text" name="name" value={name} onChange={this.handleChange} />
