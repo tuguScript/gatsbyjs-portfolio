@@ -58,7 +58,6 @@ class IndexPageUnstyled extends Component {
     super()
     this.state = {
       worksData: [],
-      name: '',
       email: '',
       message: '',
     }
@@ -79,9 +78,8 @@ class IndexPageUnstyled extends Component {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'contact', ...this.state }),
     })
-      .then(() => alert('Success!'))
+      .then(res => console.log(res))
       .catch(error => alert(error))
-
     e.preventDefault()
   }
 
@@ -183,60 +181,33 @@ class IndexPageUnstyled extends Component {
             Contact
           </Typography>
           <div>
-            <form onSubmit={this.handleSubmit} netlify="true">
+            <form onSubmit={this.handleSubmit}>
               <input type="hidden" name="form-name" value="contact" />
               <p>
                 <label>
-                  Your Name:{' '}
-                  <input
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={this.handleChange}
-                  />
+                  Your Email: <input type="email" name="email" />
                 </label>
               </p>
               <p>
                 <label>
-                  Your Email:{' '}
-                  <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={this.handleChange}
-                  />
-                </label>
-              </p>
-              <p>
-                <label>
-                  Message:{' '}
-                  <textarea
-                    name="message"
-                    value={message}
-                    onChange={this.handleChange}
-                  />
+                  Message: <textarea name="message" />
                 </label>
               </p>
               <p>
                 <button type="submit">Send</button>
               </p>
             </form>
-
-            {/* <form onSubmit={this.handleSubmit} netlify="true">
+            <form
+              name="contact"
+              method="post"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+            >
+              {/* You still need to add the hidden input with the form name to your JSX form */}
               <input type="hidden" name="form-name" value="contact" />
-              <TextField
-                required
-                id="outlined-text-input"
-                label="Name"
-                type="name"
-                name="name"
-                autoComplete="name"
-                margin="normal"
-                variant="filled"
-                fullWidth
-                value={name}
-                onChange={this.handleChange}
-              />
+              ...
+            </form>
+            <form onSubmit={this.handleSubmit}>
               <TextField
                 required
                 id="outlined-email-input"
@@ -257,11 +228,6 @@ class IndexPageUnstyled extends Component {
                 required
                 id="outlined-full-width"
                 label="Message"
-                style={
-                  {
-                    // margin: 8,
-                  }
-                }
                 multiline
                 rows="6"
                 fullWidth
@@ -281,7 +247,6 @@ class IndexPageUnstyled extends Component {
                 <SendIcon className={classes.rightIcon} />
               </Button>
             </form>
-           */}
           </div>
         </section>
       </Layout>
