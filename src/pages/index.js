@@ -216,17 +216,7 @@ class IndexPageUnstyled extends Component {
                 <button type="submit">Send</button>
               </p>
             </form>
-            <form
-              name="contact"
-              method="post"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-            >
-              {/* You still need to add the hidden input with the form name to your JSX form */}
-              <input type="hidden" name="form-name" value="contact" />
-              ...
-            </form>
-            <form onSubmit={this.handleSubmit}>
+            {/* <form onSubmit={this.handleSubmit}>
               <TextField
                 required
                 id="outlined-email-input"
@@ -265,7 +255,7 @@ class IndexPageUnstyled extends Component {
                 Send
                 <SendIcon className={classes.rightIcon} />
               </Button>
-            </form>
+            </form> */}
           </div>
         </section>
       </Layout>
