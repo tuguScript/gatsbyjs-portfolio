@@ -183,7 +183,7 @@ class IndexPageUnstyled extends Component {
             Contact
           </Typography>
           <div>
-            <form onSubmit={this.handleSubmit} netlify="true" data-netlify-honeypot="bot-field">
+            <form onSubmit={this.handleSubmit} netlify="true">
               <input type="hidden" name="form-name" value="contact" />
               <p>
                 <label>
