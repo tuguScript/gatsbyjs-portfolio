@@ -58,6 +58,7 @@ class IndexPageUnstyled extends Component {
     super()
     this.state = {
       worksData: [],
+      name: '',
       email: '',
       message: '',
     }
@@ -188,6 +189,19 @@ class IndexPageUnstyled extends Component {
               data-netlify-honeypot="bot-field"
             >
               <input type="hidden" name="form-name" value="contact" />
+              <p hidden>
+                <label>
+                  Don’t fill this out:{' '}
+                  <input name="bot-field" onChange={this.handleChange} />
+                </label>
+              </p>
+              <p>
+                <label>
+                  Your name:
+                  <br />
+                  <input type="text" name="name" onChange={this.handleChange} />
+                </label>
+              </p>
               <p>
                 <label>
                   Your Email: <input type="email" name="email" />
