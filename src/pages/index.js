@@ -12,6 +12,7 @@ import Layout from '../components/layout'
 import Item from '../components/Item'
 import worksData from '../utils/worksData'
 import injectSheet from 'react-jss'
+import axios from 'axios'
 import './index.css'
 
 // TODO: on scrollUP, show header
@@ -19,17 +20,22 @@ import './index.css'
 // google analytics
 // TODO:revealjs. everything
 // TODO:moon sun icon change Animation
-// TODO:email send
+// email send
 
 const styles = theme => ({
+  '@media(min-device-width: 768px,max-device-width: 1024px,orientation: portrait)': {
+    works: { gridTemplateColumns: '1fr 1fr' },
+  },
   container: {
     margin: '0 auto',
     maxWidth: '1200px',
   },
   works: {
-    display: 'flex',
+    display: 'grid',
     justifyContent: 'space-between',
     margin: '100px 0px',
+    gridTemplateColumns: '1fr 1fr 1fr',
+    gridRowGap: '4vh',
   },
   svg: {
     flex: 1,
@@ -59,9 +65,12 @@ class IndexPageUnstyled extends Component {
     super()
     this.state = {
       worksData: [],
-      name: '',
-      email: '',
-      message: '',
+      contact: {
+        name: '',
+        email: '',
+        message: '',
+      },
+
       showEmailSnack: { display: null, variant: '', message: '' },
     }
   }
@@ -76,10 +85,16 @@ class IndexPageUnstyled extends Component {
   }
 
   handleSubmit = e => {
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'contact', ...this.state }),
+    e.preventDefault()
+    axios({
+      method: 'post',
+      url: 'https://formspree.io/tuguscript@gmail.com',
+      data: {
+        name: this.state.name,
+        email: this.state.email,
+        message: this.state.message,
+      },
+      dataType: 'json',
     })
       .then(
         this.setState({
@@ -99,10 +114,11 @@ class IndexPageUnstyled extends Component {
           },
         })
       })
-    e.preventDefault()
   }
 
-  handleChange = e => this.setState({ [e.target.name]: e.target.value })
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
 
   handleClose = (event, reason) => {
     if (reason === 'clickaway') {
