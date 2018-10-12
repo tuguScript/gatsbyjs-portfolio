@@ -195,26 +195,56 @@ class IndexPageUnstyled extends Component {
                   <input name="bot-field" onChange={this.handleChange} />
                 </label>
               </p>
-              <p>
-                <label>
-                  Your name:
-                  <br />
-                  <input type="text" name="name" onChange={this.handleChange} />
-                </label>
-              </p>
-              <p>
-                <label>
-                  Your Email: <input type="email" name="email" />
-                </label>
-              </p>
-              <p>
-                <label>
-                  Message: <textarea name="message" />
-                </label>
-              </p>
-              <p>
-                <button type="submit">Send</button>
-              </p>
+              <TextField
+                required
+                id="outlined-text-input"
+                label="Your name"
+                type="text"
+                name="name"
+                margin="normal"
+                variant="filled"
+                fullWidth
+                value={name}
+                onChange={this.handleChange}
+              />
+              <TextField
+                required
+                id="outlined-email-input"
+                label="Email"
+                type="email"
+                name="email"
+                autoComplete="email"
+                margin="normal"
+                variant="filled"
+                fullWidth
+                value={email}
+                onChange={this.handleChange}
+              />
+              <TextField
+                name="message"
+                value={message}
+                onChange={this.handleChange}
+                required
+                id="outlined-full-width"
+                label="Message"
+                multiline
+                rows="6"
+                fullWidth
+                margin="normal"
+                variant="filled"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <Button
+                color="primary"
+                type="submit"
+                variant="contained"
+                style={{ marginTop: '16px' }}
+              >
+                Send
+                <SendIcon className={classes.rightIcon} />
+              </Button>
             </form>
             {/* <form onSubmit={this.handleSubmit}>
               <TextField
