@@ -62,7 +62,7 @@ class IndexPageUnstyled extends Component {
       name: '',
       email: '',
       message: '',
-      showEmailSnack: null,
+      showEmailSnack: { display: null, variant: '', message: '' },
     }
   }
   componentDidMount = () => {
@@ -81,8 +81,24 @@ class IndexPageUnstyled extends Component {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'contact', ...this.state }),
     })
-      .then(this.setState({ showEmailSnack: true }))
-      .catch(error => alert(error))
+      .then(
+        this.setState({
+          showEmailSnack: {
+            display: true,
+            message: 'Sent!',
+            variant: 'success',
+          },
+        })
+      )
+      .catch(error => {
+        this.setState({
+          showEmailSnack: {
+            display: true,
+            message: error,
+            variant: 'error',
+          },
+        })
+      })
     e.preventDefault()
   }
 
@@ -93,7 +109,9 @@ class IndexPageUnstyled extends Component {
       return
     }
 
-    this.setState({ showEmailSnack: false })
+    this.setState({
+      showEmailSnack: { display: false, message: '', variant: 'success' },
+    })
   }
   render() {
     let { worksData } = this.state
@@ -196,14 +214,14 @@ class IndexPageUnstyled extends Component {
                 vertical: 'bottom',
                 horizontal: 'left',
               }}
-              open={this.state.showEmailSnack}
+              open={this.state.showEmailSnack.display}
               autoHideDuration={3000}
               onClose={this.handleClose}
             >
               <MySnackbarContentWrapper
                 onClose={this.handleClose}
-                variant="success"
-                message="Sent!"
+                variant={this.state.showEmailSnack.variant}
+                message={this.state.showEmailSnack.message}
               />
             </Snackbar>
             <form
