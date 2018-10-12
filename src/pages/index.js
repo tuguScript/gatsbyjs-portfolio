@@ -6,7 +6,8 @@ import Icon from '@material-ui/core/Icon'
 import { loadCSS } from 'fg-loadcss/src/loadCSS'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-
+import Snackbar from '@material-ui/core/Snackbar'
+import MySnackbarContentWrapper from '../components/MySnackbarContent.jsx'
 import Layout from '../components/layout'
 import Item from '../components/Item'
 import worksData from '../utils/worksData'
@@ -61,6 +62,7 @@ class IndexPageUnstyled extends Component {
       name: '',
       email: '',
       message: '',
+      showEmailSnack: null,
     }
   }
   componentDidMount = () => {
@@ -79,13 +81,20 @@ class IndexPageUnstyled extends Component {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'contact', ...this.state }),
     })
-      .then(res => console.log(res))
+      .then(this.setState({ showEmailSnack: true }))
       .catch(error => alert(error))
     e.preventDefault()
   }
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value })
 
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+
+    this.setState({ showEmailSnack: false })
+  }
   render() {
     let { worksData } = this.state
     let { classes } = this.props
@@ -182,6 +191,21 @@ class IndexPageUnstyled extends Component {
             Contact
           </Typography>
           <div>
+            <Snackbar
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              open={this.state.showEmailSnack}
+              autoHideDuration={3000}
+              onClose={this.handleClose}
+            >
+              <MySnackbarContentWrapper
+                onClose={this.handleClose}
+                variant="success"
+                message="Sent!"
+              />
+            </Snackbar>
             <form
               name="contact"
               onSubmit={this.handleSubmit}
