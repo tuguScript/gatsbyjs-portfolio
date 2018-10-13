@@ -16,7 +16,7 @@ const styles = {
     margin: '0 auto',
     justifyContent: 'space-between',
     maxWidth: '1200px',
-    height: '60px'
+    height: '60px',
   },
 }
 
@@ -83,7 +83,14 @@ class LayoutUnstyled extends Component {
             </Helmet>{' '}
             <MuiThemeProvider theme={theme}>
               <header className={classes.header}>
-                <div style={{margin: 'auto 0', display: 'flex', justifyContent: 'space-between', width: 152}}>
+                <div
+                  style={{
+                    margin: 'auto 0',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    width: 152,
+                  }}
+                >
                   <Icon
                     className="fab fa-github-alt"
                     style={{ cursor: 'pointer' }}
@@ -120,7 +127,7 @@ class LayoutUnstyled extends Component {
                     color="action"
                   />
                 </div>
-                <div style={{margin: 'auto 0'}}>
+                <div style={{ margin: 'auto 0' }}>
                   {this.state.lightTheme ? (
                     <Icon
                       className="fas fa-sun"

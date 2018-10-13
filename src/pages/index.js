@@ -15,18 +15,24 @@ import injectSheet from 'react-jss'
 import axios from 'axios'
 import Grow from '@material-ui/core/Grow'
 import Waypoint from 'react-waypoint'
+import windowDimensions from 'react-window-dimensions'
 import './index.css'
 // TODO: on scrollUP, show header
 // TODO:mobile responsive design
-// TODO:moon sun icon change Animation
+// TODO:resume nemeh && underline
 // google analytics
 // fade animation
 // email send
 
-const styles = theme => ({
-  '@media(min-device-width: 768px,max-device-width: 1024px,orientation: portrait)': {
-    works: { gridTemplateColumns: '1fr 1fr' },
-  },
+
+// @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
+// @media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
+// @media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
+// @media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+// @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+// @media (min-width:1281px) { /* hi-res laptops and desktops */ }
+
+const styles = () => ({
   container: {
     margin: '0 auto',
     maxWidth: '1200px',
@@ -38,6 +44,7 @@ const styles = theme => ({
     gridTemplateColumns: '1fr 1fr 1fr',
     gridRowGap: '4vh',
   },
+  introText: { flex: 1, maxWidth: '32vw' },
   svg: {
     flex: 1,
     maxWidth: '32vw',
@@ -53,6 +60,23 @@ const styles = theme => ({
   rightIcon: {
     marginLeft: '15px',
   },
+  '@media (max-width:801px)': {
+    works: {
+      gridTemplateColumns: '1fr',
+    },
+    wrapper: {
+      padding: '0px 30px',
+    },
+    page1: { display: 'block' },
+    introText: {
+      maxWidth: '100%',
+    },
+  },
+  '@media (min-width: 1024px)': {
+    button: {
+      width: 200,
+    },
+  },
 })
 
 const encode = data => {
@@ -62,18 +86,17 @@ const encode = data => {
 }
 
 class IndexPageUnstyled extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       worksData: [],
       contact: {
         name: '',
         email: '',
         message: '',
-        growCheckedPage1: false,
-        growCheckedPage2: false,
       },
-
+      growCheckedPage1: false,
+      growCheckedPage2: props.width < 481 ? true : false,
       showEmailSnack: { display: null, variant: '', message: '' },
     }
   }
@@ -134,7 +157,7 @@ class IndexPageUnstyled extends Component {
   }
   render() {
     let { worksData } = this.state
-    let { classes } = this.props
+    let { classes, width, height } = this.props
     const {
       name,
       email,
@@ -144,205 +167,208 @@ class IndexPageUnstyled extends Component {
     } = this.state
     return (
       <Layout>
-        <section className={classes.page1}>
-          <Waypoint
-            onEnter={() => this.setState({ growCheckedPage1: true })}
-            onLeave={() => this.setState({ growCheckedPage1: false })}
-          />
-          <Grow in={growCheckedPage1}>
-            <div style={{ flex: 1, maxWidth: '32vw' }}>
-              <Typography
-                variant="headline"
-                gutterBottom
-                style={{ marginBottom: '52px' }}
-              >
-                Hi, I’ m Tugi
-              </Typography>
-              <Typography variant="subheading" gutterBottom>
-                I’ m a full - stack designer / developer based in San Francisco
-                Bay Area. <br />
-                <br /> My skills and experience include UI + UX design, front -
-                end development, back - end development, and involvement in
-                product launches.My strong programming fundamentals and passion
-                for tech allow me to quickly pick up new frameworks and
-                languages.
-                <br />
-                <br /> Feel free to download my resume.
-                <br />
-                <br /> Get in touch, or find me elsewhere:
-                <Icon
-                  className="fab fa-github-alt"
-                  style={{
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => {
-                    window.open('https://github.com/tuguScript/', '_blank')
-                  }}
-                />
-                <Icon
-                  className="fab fa-linkedin-in"
-                  style={{
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => {
-                    window.open(
-                      'https://www.linkedin.com/in/tuguldurtech/',
-                      '_blank'
-                    )
-                  }}
-                />
-                <Icon
-                  className="fab fa-twitter"
-                  style={{
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => {
-                    window.open('https://twitter.com/tuguldur_01', '_blank')
-                  }}
-                />
-              </Typography>
-            </div>
-          </Grow>
-
-          <Grow
-            in={growCheckedPage1}
-            {...(growCheckedPage1 ? { timeout: 1000 } : {})}
-          >
-            <div className={classes.svg}>
-              <div className="video-wrapper">
-                <video
-                  className="video"
-                  src="https://res.cloudinary.com/narative/video/upload/v1524716897/narative-wave.webm"
-                  autoPlay={true}
-                  muted
-                  loop
-                  width="100%"
-                  height="563"
-                  style={{
-                    position: 'relative',
-                    overflow: 'hidden',
-                    clipPath: 'url(#mask)',
-                  }}
-                />
+        <div className={classes.wrapper}>
+          <section className={classes.page1}>
+            <Waypoint
+              onEnter={() => this.setState({ growCheckedPage1: true })}
+              onLeave={() => this.setState({ growCheckedPage1: false })}
+            />
+            <Grow in={growCheckedPage1}>
+              <div className={classes.introText}>
+                <Typography
+                  variant="headline"
+                  gutterBottom
+                  style={{ marginBottom: '52px' }}
+                >
+                  Hi, I’ m Tugi
+                </Typography>
+                <Typography variant="subheading" gutterBottom>
+                  I’ m a full - stack designer / developer based in San
+                  Francisco Bay Area. <br />
+                  <br /> My skills and experience include UI + UX design, front
+                  - end development, back - end development, and involvement in
+                  product launches.My strong programming fundamentals and
+                  passion for tech allow me to quickly pick up new frameworks
+                  and languages.
+                  <br />
+                  <br /> Feel free to download my resume.
+                  <br />
+                  <br /> Get in touch, or find me elsewhere:
+                  <Icon
+                    className="fab fa-github-alt"
+                    style={{
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => {
+                      window.open('https://github.com/tuguScript/', '_blank')
+                    }}
+                  />
+                  <Icon
+                    className="fab fa-linkedin-in"
+                    style={{
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => {
+                      window.open(
+                        'https://www.linkedin.com/in/tuguldurtech/',
+                        '_blank'
+                      )
+                    }}
+                  />
+                  <Icon
+                    className="fab fa-twitter"
+                    style={{
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => {
+                      window.open('https://twitter.com/tuguldur_01', '_blank')
+                    }}
+                  />
+                </Typography>
               </div>
-            </div>
-          </Grow>
-        </section>
-        <section className={classes.container}>
-          <Grow in={growCheckedPage2}>
-            <Typography variant="headline" gutterBottom>
-              WORKS
-            </Typography>
-          </Grow>
-          <Waypoint
-            onEnter={() => this.setState({ growCheckedPage2: true })}
-            onLeave={() => this.setState({ growCheckedPage2: false })}
-          />
+            </Grow>
 
-          <div className={classes.works}>
-            {worksData.map((data, i) => {
-              let delay = i * 100
-              return (
-                <Item
-                  key={i}
-                  data={data}
-                  growCheckedPage2={this.state.growCheckedPage2}
-                  delay={delay}
+            <Grow
+              in={growCheckedPage1}
+              {...(growCheckedPage1 ? { timeout: 1000 } : {})}
+            >
+              <div className={classes.svg}>
+                <div className="video-wrapper">
+                  <video
+                    className="video"
+                    src="https://res.cloudinary.com/narative/video/upload/v1524716897/narative-wave.webm"
+                    autoPlay={true}
+                    muted
+                    loop
+                    width="100%"
+                    height="563"
+                    style={{
+                      position: 'relative',
+                      overflow: 'hidden',
+                      clipPath: 'url(#mask)',
+                    }}
+                  />
+                </div>
+              </div>
+            </Grow>
+          </section>
+          <section className={classes.container}>
+            <Grow in={growCheckedPage2}>
+              <Typography variant="headline" gutterBottom>
+                WORKS
+              </Typography>
+            </Grow>
+
+            <div className={classes.works}>
+              {worksData.map((data, i) => {
+                let delay = i * 100
+                return (
+                  <Item
+                    key={i}
+                    data={data}
+                    growCheckedPage2={this.state.growCheckedPage2}
+                    delay={delay}
+                  />
+                )
+              })}
+              {width < 481 ? null : (
+                <Waypoint
+                  onEnter={() => this.setState({ growCheckedPage2: true })}
+                  onLeave={() => this.setState({ growCheckedPage2: false })}
                 />
-              )
-            })}
-          </div>
-        </section>
-        <section className={classes.container}>
-          <Typography
-            variant="headline"
-            gutterBottom
-            style={{ marginBottom: '100px' }}
-          >
-            Contact
-          </Typography>
-          <div>
-            <Snackbar
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              open={this.state.showEmailSnack.display}
-              autoHideDuration={3000}
-              onClose={this.handleClose}
+              )}
+            </div>
+          </section>
+          <section className={classes.container}>
+            <Typography
+              variant="headline"
+              gutterBottom
+              style={{ marginBottom: '100px' }}
             >
-              <MySnackbarContentWrapper
-                onClose={this.handleClose}
-                variant={this.state.showEmailSnack.variant}
-                message={this.state.showEmailSnack.message}
-              />
-            </Snackbar>
-            <form
-              name="contact"
-              onSubmit={this.handleSubmit}
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-            >
-              <input type="hidden" name="form-name" value="contact" />
-              <p hidden>
-                <label>
-                  Don’t fill this out:{' '}
-                  <input name="bot-field" onChange={this.handleChange} />
-                </label>
-              </p>
-              <TextField
-                required
-                id="outlined-text-input"
-                label="Your name"
-                type="text"
-                name="name"
-                margin="normal"
-                variant="filled"
-                fullWidth
-                value={name}
-                onChange={this.handleChange}
-              />
-              <TextField
-                required
-                id="outlined-email-input"
-                label="Email"
-                type="email"
-                name="email"
-                autoComplete="email"
-                margin="normal"
-                variant="filled"
-                fullWidth
-                value={email}
-                onChange={this.handleChange}
-              />
-              <TextField
-                name="message"
-                value={message}
-                onChange={this.handleChange}
-                required
-                id="outlined-full-width"
-                label="Message"
-                multiline
-                rows="6"
-                fullWidth
-                margin="normal"
-                variant="filled"
-                InputLabelProps={{
-                  shrink: true,
+              Contact
+            </Typography>
+            <div>
+              <Snackbar
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
                 }}
-              />
-              <Button
-                color="primary"
-                type="submit"
-                variant="contained"
-                style={{ marginTop: '16px' }}
+                open={this.state.showEmailSnack.display}
+                autoHideDuration={3000}
+                onClose={this.handleClose}
               >
-                Send
-                <SendIcon className={classes.rightIcon} />
-              </Button>
-            </form>
-          </div>
-        </section>
+                <MySnackbarContentWrapper
+                  onClose={this.handleClose}
+                  variant={this.state.showEmailSnack.variant}
+                  message={this.state.showEmailSnack.message}
+                />
+              </Snackbar>
+              <form
+                name="contact"
+                onSubmit={this.handleSubmit}
+                style={{ marginBottom: '100px' }}
+              >
+                <input type="hidden" name="form-name" value="contact" />
+                <p hidden>
+                  <label>
+                    Don’t fill this out:{' '}
+                    <input name="bot-field" onChange={this.handleChange} />
+                  </label>
+                </p>
+                <TextField
+                  required
+                  id="outlined-text-input"
+                  label="Your name"
+                  type="text"
+                  name="name"
+                  margin="normal"
+                  variant="filled"
+                  fullWidth
+                  value={name}
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  required
+                  id="outlined-email-input"
+                  label="Email"
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  margin="normal"
+                  variant="filled"
+                  fullWidth
+                  value={email}
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  name="message"
+                  value={message}
+                  onChange={this.handleChange}
+                  required
+                  id="outlined-full-width"
+                  label="Message"
+                  multiline
+                  rows="6"
+                  fullWidth
+                  margin="normal"
+                  variant="filled"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <Button
+                  color="primary"
+                  type="submit"
+                  variant="contained"
+                  style={{ marginTop: '16px' }}
+                >
+                  Send
+                  <SendIcon className={classes.rightIcon} />
+                </Button>
+              </form>
+            </div>
+          </section>
+        </div>
       </Layout>
     )
   }
@@ -350,4 +376,4 @@ class IndexPageUnstyled extends Component {
 
 const IndexPage = injectSheet(styles)(IndexPageUnstyled)
 
-export default IndexPage
+export default windowDimensions()(IndexPage)
