@@ -15,7 +15,10 @@ import injectSheet from 'react-jss'
 import axios from 'axios'
 import Grow from '@material-ui/core/Grow'
 import Waypoint from 'react-waypoint'
-import windowDimensions from 'react-window-dimensions'
+if (typeof window !== `undefined`) {
+  const windowDimensions = require('react-window-dimensions')
+  // import windowDimensions from 'react-window-dimensions'
+}
 import './index.css'
 // TODO: on scrollUP, show header
 // TODO:mobile responsive design
@@ -23,7 +26,6 @@ import './index.css'
 // google analytics
 // fade animation
 // email send
-
 
 // @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
 // @media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
@@ -376,4 +378,7 @@ class IndexPageUnstyled extends Component {
 
 const IndexPage = injectSheet(styles)(IndexPageUnstyled)
 
-export default windowDimensions()(IndexPage)
+if (typeof window !== `undefined`) {
+  windowDimensions()(IndexPage)
+}
+export default IndexPage
