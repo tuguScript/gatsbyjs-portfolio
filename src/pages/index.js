@@ -15,10 +15,6 @@ import injectSheet from 'react-jss'
 import axios from 'axios'
 import Grow from '@material-ui/core/Grow'
 import Waypoint from 'react-waypoint'
-if (typeof window !== `undefined`) {
-  const windowDimensions = require('react-window-dimensions')
-  // import windowDimensions from 'react-window-dimensions'
-}
 import './index.css'
 // TODO: on scrollUP, show header
 // TODO:mobile responsive design
@@ -97,12 +93,19 @@ class IndexPageUnstyled extends Component {
         email: '',
         message: '',
       },
+      width: 0,
+      height: 0,
       growCheckedPage1: false,
-      growCheckedPage2: props.width < 481 ? true : false,
+      growCheckedPage2: this.width < 481 ? false : true,
       showEmailSnack: { display: null, variant: '', message: '' },
     }
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
   }
-  componentDidMount = () => {
+  componentDidMount() {
+    if (typeof window !== `undefined`) {
+      this.updateWindowDimensions()
+    }
+    window.addEventListener('resize', this.updateWindowDimensions)
     loadCSS(
       'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
       document.querySelector('#insertion-point-jss')
@@ -111,7 +114,16 @@ class IndexPageUnstyled extends Component {
       worksData,
     })
   }
-
+  componentWillUnmount() {
+    if (typeof window !== `undefined`) {
+      window.removeEventListener('resize', this.updateWindowDimensions)
+    }
+  }
+  updateWindowDimensions() {
+    if (typeof window !== `undefined`) {
+      this.setState({ width: window.innerWidth, height: window.innerHeight })
+    }
+  }
   handleSubmit = e => {
     e.preventDefault()
     axios({
@@ -158,14 +170,16 @@ class IndexPageUnstyled extends Component {
     })
   }
   render() {
-    let { worksData } = this.state
-    let { classes, width, height } = this.props
+    let { classes } = this.props
     const {
+      worksData,
       name,
       email,
       message,
       growCheckedPage1,
       growCheckedPage2,
+      width,
+      height,
     } = this.state
     return (
       <Layout>
@@ -273,12 +287,13 @@ class IndexPageUnstyled extends Component {
                   />
                 )
               })}
-              {width < 481 ? null : (
+
+              {width > 481 ? (
                 <Waypoint
                   onEnter={() => this.setState({ growCheckedPage2: true })}
                   onLeave={() => this.setState({ growCheckedPage2: false })}
                 />
-              )}
+              ) : null}
             </div>
           </section>
           <section className={classes.container}>
@@ -377,8 +392,4 @@ class IndexPageUnstyled extends Component {
 }
 
 const IndexPage = injectSheet(styles)(IndexPageUnstyled)
-
-if (typeof window !== `undefined`) {
-  windowDimensions()(IndexPage)
-}
 export default IndexPage
