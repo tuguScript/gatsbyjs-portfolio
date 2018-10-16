@@ -329,7 +329,7 @@ class IndexPageUnstyled extends Component {
                   message={this.state.showEmailSnack.message}
                 />
               </Snackbar>
-              <form
+              {/* <form
                 name="contact"
                 method="post"
                 // action="/thanks/"
@@ -337,7 +337,6 @@ class IndexPageUnstyled extends Component {
                 data-netlify-honeypot="bot-field"
                 onSubmit={this.handleSubmit}
               >
-                {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
                 <input type="hidden" name="form-name" value="contact" />
                 <p hidden>
                   <label>
@@ -377,7 +376,7 @@ class IndexPageUnstyled extends Component {
                 <p>
                   <button type="submit">Send</button>
                 </p>
-              </form>
+              </form> */}
               <form
                 name="contact"
                 onSubmit={this.handleSubmit}
