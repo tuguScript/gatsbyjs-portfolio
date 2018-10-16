@@ -54,6 +54,7 @@ const Footer = () => {
       style={{
         display: 'flex',
         justifyContent: 'center',
+        margin: '0px 30px'
       }}
     >
       <div style={{ display: 'flex', width: 400 }}>

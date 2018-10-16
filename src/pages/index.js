@@ -19,6 +19,7 @@ import './index.css'
 // TODO: on scrollUP, show header
 // TODO:mobile responsive design
 // TODO:resume nemeh && underline
+// TODO: contact form service deer ajildag bolgoh
 // google analytics
 // fade animation
 // email send
@@ -41,6 +42,7 @@ const styles = () => ({
     margin: '100px 0px',
     gridTemplateColumns: '1fr 1fr 1fr',
     gridRowGap: '4vh',
+    gridColumnGap: '4vh',
   },
   introText: { flex: 1, maxWidth: '32vw' },
   svg: {
@@ -58,7 +60,7 @@ const styles = () => ({
   rightIcon: {
     marginLeft: '15px',
   },
-  '@media (max-width:801px)': {
+  '@media (max-width:481px)': {
     works: {
       gridTemplateColumns: '1fr',
     },
@@ -185,10 +187,6 @@ class IndexPageUnstyled extends Component {
       <Layout>
         <div className={classes.wrapper}>
           <section className={classes.page1}>
-            <Waypoint
-              onEnter={() => this.setState({ growCheckedPage1: true })}
-              onLeave={() => this.setState({ growCheckedPage1: false })}
-            />
             <Grow in={growCheckedPage1}>
               <div className={classes.introText}>
                 <Typography
@@ -268,6 +266,10 @@ class IndexPageUnstyled extends Component {
               </div>
             </Grow>
           </section>
+          <Waypoint
+            onEnter={() => this.setState({ growCheckedPage1: true })}
+            onLeave={() => this.setState({ growCheckedPage1: false })}
+          />
           <section className={classes.container}>
             <Grow in={growCheckedPage2}>
               <Typography variant="headline" gutterBottom>

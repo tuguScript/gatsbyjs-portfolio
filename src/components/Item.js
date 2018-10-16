@@ -9,7 +9,7 @@ import Zoom from '@material-ui/core/Zoom'
 
 const styles = {
   card: {
-    width: 370,
+    // width: 370,
   },
 }
 

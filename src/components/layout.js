@@ -18,11 +18,16 @@ const styles = {
     maxWidth: '1200px',
     height: '60px',
   },
+  '@media (max-width:481px)': {
+    header: {
+      margin: '0 30px',
+    },
+  },
 }
 
 class LayoutUnstyled extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       lightTheme: false,
     }
