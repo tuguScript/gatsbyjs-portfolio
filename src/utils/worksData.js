@@ -3,7 +3,7 @@ const worksData = [
     title: 'Mechef',
     description:
       'Mechef is an webapp that helps users to find recipes based on ingredients. That app was built with Ruby on Rails and React.',
-    link: 'http://mechef.ga/',
+    link: 'https://recipefindertugu.herokuapp.com/',
     github: 'https://github.com/tuguScript/recipeFinder',
   },
   {
@@ -16,14 +16,14 @@ const worksData = [
   {
     title: 'Gitter Clone',
     description: "It's an instant messaging and chat room system.",
-    link: 'https://gitterclone.ga/',
+    link: 'https://murmuring-dawn-58135.herokuapp.com/',
     github: null,
   },
   {
     title: 'Todoro',
     description:
       'Sample todo app that has been built as Progressive Web App with Offline Support. The app was built with React.js.',
-    link: 'https://todoro.ga/',
+    link: 'https://newme-7d6ec.firebaseapp.com/',
     github: null,
   },
 ]

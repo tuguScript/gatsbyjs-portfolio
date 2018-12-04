@@ -15,11 +15,13 @@ import injectSheet from 'react-jss'
 import axios from 'axios'
 import Grow from '@material-ui/core/Grow'
 import Waypoint from 'react-waypoint'
+import ProfilePic from '../images/profile_pic.jpg'
 import './index.css'
+// TODO: svg video g mobile deer integrate hiih
 // TODO: on scrollUP, show header
-// TODO:mobile responsive design
+// mobile responsive design
 // TODO:resume nemeh && underline
-// TODO: contact form service deer ajildag bolgoh
+// TODOcontact form service deer ajildag bolgoh
 // google analytics
 // fade animation
 // email send
@@ -48,6 +50,8 @@ const styles = () => ({
   svg: {
     flex: 1,
     maxWidth: '32vw',
+    textAlign: 'center',
+    paddingTop: 80,
   },
   page1: {
     display: 'flex',
@@ -67,10 +71,13 @@ const styles = () => ({
     wrapper: {
       padding: '0px 30px',
     },
-    page1: { display: 'block' },
+    page1: { display: 'flex', height: '100%', flexWrap: 'wrap' },
     introText: {
       maxWidth: '100%',
+      order: '2',
+      minWidth: 300,
     },
+    svg: { minWidth: 300 },
   },
   '@media (min-width: 1024px)': {
     button: {
@@ -212,8 +219,6 @@ class IndexPageUnstyled extends Component {
                   passion for tech allow me to quickly pick up new frameworks
                   and languages.
                   <br />
-                  <br /> Feel free to download my resume.
-                  <br />
                   <br /> Get in touch, or find me elsewhere:
                   <Icon
                     className="fab fa-github-alt"
@@ -248,35 +253,24 @@ class IndexPageUnstyled extends Component {
                 </Typography>
               </div>
             </Grow>
-
+            <Waypoint
+              onEnter={() => this.setState({ growCheckedPage1: true })}
+              onLeave={() => this.setState({ growCheckedPage1: false })}
+            />
             <Grow
               in={growCheckedPage1}
               {...(growCheckedPage1 ? { timeout: 1000 } : {})}
             >
               <div className={classes.svg}>
-                <div className="video-wrapper">
-                  <video
-                    className="video"
-                    src="https://res.cloudinary.com/narative/video/upload/v1524716897/narative-wave.webm"
-                    autoPlay={true}
-                    muted
-                    loop
-                    width="100%"
-                    height="563"
-                    style={{
-                      position: 'relative',
-                      overflow: 'hidden',
-                      clipPath: 'url(#mask)',
-                    }}
-                  />
-                </div>
+                <img
+                  src={ProfilePic}
+                  alt="Tuguldur Bayarnyam profile pic"
+                  style={{ borderRadius: '50%', width: 300 }}
+                />
               </div>
             </Grow>
           </section>
-          <Waypoint
-            onEnter={() => this.setState({ growCheckedPage1: true })}
-            onLeave={() => this.setState({ growCheckedPage1: false })}
-          />
+
           <section className={classes.container}>
             <Grow in={growCheckedPage2}>
               <Typography variant="headline" gutterBottom>
