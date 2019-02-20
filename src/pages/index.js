@@ -299,7 +299,7 @@ class IndexPageUnstyled extends Component {
               ) : null}
             </div>
           </section>
-          <section className={classes.container}>
+          {/* <section className={classes.container}>
             <Typography
               variant="headline"
               gutterBottom
@@ -323,54 +323,6 @@ class IndexPageUnstyled extends Component {
                   message={this.state.showEmailSnack.message}
                 />
               </Snackbar>
-              {/* <form
-                name="contact"
-                method="post"
-                // action="/thanks/"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
-                onSubmit={this.handleSubmit}
-              >
-                <input type="hidden" name="form-name" value="contact" />
-                <p hidden>
-                  <label>
-                    Don’t fill this out:{' '}
-                    <input name="bot-field" onChange={this.handleChange} />
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    Your name:
-                    <br />
-                    <input
-                      type="text"
-                      name="name"
-                      onChange={this.handleChange}
-                    />
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    Your email:
-                    <br />
-                    <input
-                      type="email"
-                      name="email"
-                      onChange={this.handleChange}
-                    />
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    Message:
-                    <br />
-                    <textarea name="message" onChange={this.handleChange} />
-                  </label>
-                </p>
-                <p>
-                  <button type="submit">Send</button>
-                </p>
-              </form> */}
               <form
                 name="contact"
                 onSubmit={this.handleSubmit}
@@ -436,6 +388,7 @@ class IndexPageUnstyled extends Component {
               </form>
             </div>
           </section>
+         */}
         </div>
       </Layout>
     )
