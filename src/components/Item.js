@@ -26,6 +26,10 @@ const useStyles = createUseStyles({
     background: props => {
       return backgroundColors[props.id]
     },
+    "&:hover": {
+      transform: "scale(1.1)",
+      transition: "all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) 0s",
+    },
   },
 })
 
