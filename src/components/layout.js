@@ -25,7 +25,7 @@ class LayoutUnstyled extends Component {
   constructor() {
     super()
     this.state = {
-      lightTheme: false,
+      lightTheme: !window.matchMedia("(prefers-color-scheme: dark)").matches,
     }
     this.changeTheme = this.changeTheme.bind(this)
   }

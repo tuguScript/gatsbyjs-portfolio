@@ -2,8 +2,17 @@ import Virtual_reality from "../images/postSvgs/Virtual_reality.svg"
 import Conference from "../images/postSvgs/Conference.svg"
 import Visionary_technology from "../images/postSvgs/Visionary_technology.svg"
 import Lost_online from "../images/postSvgs/Lost_online.svg"
+import Collaborator from "../images/postSvgs/Collaborator.svg"
 
 const worksData = [
+  {
+    title: "Oluulaa",
+    description:
+      "We connect professionals who truly want to share tips and help one another.",
+    link: "https://www.oluulaa.io/",
+    github: "https://github.com/tuguScript/oluulaa",
+    image: Collaborator,
+  },
   {
     title: "Mechef",
     description:
