@@ -5,6 +5,11 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@material-ui/core": "^3.1.0",
+    "@material-ui/icons": "^3.0.1",
+    "typeface-roboto": "^0.0.54",
+    "fg-loadcss": "^2.0.1",
+    "react-jss": "10.8.0",
     "gatsby": "^4.0.0-zz-next.1",
     "gatsby-plugin-image": "^2.0.0-zz-next.1",
     "gatsby-plugin-manifest": "^4.0.0-zz-next.1",
