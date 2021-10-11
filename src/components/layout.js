@@ -21,11 +21,17 @@ const styles = {
   },
 }
 
+const { matchMedia } = typeof window !== "undefined" && window
+
 class LayoutUnstyled extends Component {
   constructor() {
     super()
     this.state = {
-      lightTheme: !window.matchMedia("(prefers-color-scheme: dark)").matches,
+      lightTheme:
+        typeof window !== `undefined`
+          ? !window.matchMedia("(prefers-color-scheme: dark)").matches
+          : null,
+      // lightTheme: !window.matchMedia("(prefers-color-scheme: dark)").matches,
     }
     this.changeTheme = this.changeTheme.bind(this)
   }
