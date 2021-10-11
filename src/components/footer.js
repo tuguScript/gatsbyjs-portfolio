@@ -8,6 +8,7 @@ import WebpackIcon from "../images/svg/webpack.svg"
 import BabelIcon from "../images/svg/babel.svg"
 import NetlifyIcon from "../images/svg/netlify.svg"
 import Typography from "@material-ui/core/Typography"
+import Tooltip from "@material-ui/core/Tooltip"
 
 const Footer = () => {
   const items = [
@@ -63,14 +64,16 @@ const Footer = () => {
           }}
         >
           {items.map((item, i) => (
-            <a href={item.url} key={i}>
-              <img
-                key={i}
-                src={item.comp}
-                style={{ width: 22 }}
-                alt={item.alt}
-              />
-            </a>
+            <Tooltip title={item.name}>
+              <a href={item.url} key={i}>
+                <img
+                  key={i}
+                  src={item.comp}
+                  style={{ width: 22 }}
+                  alt={item.alt}
+                />
+              </a>
+            </Tooltip>
           ))}
         </div>
       </div>
