@@ -3,8 +3,16 @@ import Conference from "../images/postSvgs/Conference.svg"
 import Visionary_technology from "../images/postSvgs/Visionary_technology.svg"
 import Lost_online from "../images/postSvgs/Lost_online.svg"
 import Collaborator from "../images/postSvgs/Collaborator.svg"
+import Book_lover from "../images/postSvgs/Book_lover.svg"
 
 const worksData = [
+  {
+    title: "Book Summary",
+    description:
+      "How To Read A Book by Mortimer J. Adler and Charles van Doren (10 minute read)",
+    link: "https://medium.com/@tuguscript/how-to-read-a-book-by-mortimer-j-adler-and-charles-van-doren-10-minute-read-bf78db7d7af2",
+    image: Book_lover,
+  },
   {
     title: "Oluulaa",
     description:

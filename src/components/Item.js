@@ -56,7 +56,7 @@ function ItemUnstyled({ image, data, children, ...props }) {
       <CardActions>
         <Button className={"white"} size="small" href={data.link}>
           {" "}
-          APP{" "}
+          More{" "}
         </Button>
         {data.github ? (
           <Button className={"white"} href={data.github} size="small">
