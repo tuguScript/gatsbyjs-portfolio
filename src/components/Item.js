@@ -18,6 +18,7 @@ const backgroundColors = [
 
 const useStyles = createUseStyles({
   card: {
+    padding: 20,
     width: 370,
     borderRadius: 20,
     display: "grid",
@@ -31,15 +32,20 @@ const useStyles = createUseStyles({
       transition: "all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) 0s",
     },
   },
+  img: {
+    height: 200,
+    width: "100%",
+  },
 })
 
 let styles = {}
 
-function ItemUnstyled({ data, children, ...props }) {
+function ItemUnstyled({ image, data, children, ...props }) {
   const classes = useStyles(props)
   return (
     <div className={classes.card}>
       <CardContent>
+        <img src={image} className={classes.img} />
         <Typography variant="headline" component="h2" className={"white"}>
           {data.title}
         </Typography>

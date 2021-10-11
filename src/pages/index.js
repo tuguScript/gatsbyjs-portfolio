@@ -285,6 +285,7 @@ class IndexPageUnstyled extends Component {
                   <Item
                     key={i}
                     id={i}
+                    image={data.image}
                     data={data}
                     growCheckedPage2={this.state.growCheckedPage2}
                     delay={delay}

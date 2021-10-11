@@ -48,12 +48,14 @@ const Footer = () => {
   return (
     <footer
       style={{
+        marginTop: -20,
         display: "flex",
         justifyContent: "center",
+        background: "rgb(30 19 87)",
       }}
     >
       <div style={{ display: "flex", width: 400 }}>
-        <Typography variant="subheading" gutterBottom>
+        <Typography variant="subheading" gutterBottom className="white">
           built with:
         </Typography>
         <div
