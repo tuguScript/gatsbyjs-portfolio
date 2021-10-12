@@ -8,6 +8,7 @@ About Tugi, Tuguldur Bayarnyam`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-jss`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
