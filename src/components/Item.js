@@ -5,7 +5,6 @@ import CardContent from "@material-ui/core/CardContent"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 import injectSheet from "react-jss"
-import { createUseStyles } from "react-jss"
 
 const backgroundColors = [
   "linear-gradient(209.21deg, rgb(87, 15, 141) 13.57%, rgb(243, 91, 160) 98.38%)",
@@ -16,7 +15,7 @@ const backgroundColors = [
   "linear-gradient(209.21deg, rgb(0, 6, 149) 13.57%, rgb(116, 69, 154) 98.38%)",
 ]
 
-const useStyles = createUseStyles({
+const styles = () => ({
   card: {
     padding: 20,
     width: 370,
@@ -24,9 +23,7 @@ const useStyles = createUseStyles({
     display: "grid",
     gridTemplateRows: "1fr 50px",
     // background: "green",
-    background: props => {
-      return backgroundColors[props.id]
-    },
+    background: backgroundColors[1],
     "&:hover": {
       transform: "scale(1.1)",
       transition: "all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) 0s",
@@ -38,12 +35,21 @@ const useStyles = createUseStyles({
   },
 })
 
-let styles = {}
-
 function ItemUnstyled({ image, data, children, ...props }) {
-  const classes = useStyles(props)
+  const { classes } = props
   return (
-    <div className={classes.card}>
+    <div
+      className="card-scale"
+      style={{
+        padding: 20,
+        width: 370,
+        borderRadius: 20,
+        display: "grid",
+        gridTemplateRows: "1fr 50px",
+        // background: "green",
+        background: backgroundColors[props.id],
+      }}
+    >
       <CardContent>
         <img src={image} className={classes.img} />
         <Typography variant="headline" component="h2" className={"white"}>
